@@ -58,7 +58,7 @@ resetBtn.addEventListener('click', resetTimer);
 
 // --- Modifier durée ---
 const modifyBtn = document.createElement("button");
-modifyBtn.textContent = "Modifier durée";
+modifyBtn.textContent = "Set Timer";
 modifyBtn.style.marginTop = "20px";
 document.querySelector(".buttons").appendChild(modifyBtn);
 
