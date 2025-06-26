@@ -9,6 +9,9 @@ let currentTime = workDuration;
 let interval = null;
 let isWork = true;
 
+const workEndSound = document.getElementById('workEndSound');
+const breakEndSound = document.getElementById('breakEndSound');
+
 function updateDisplay() {
   let minutes = Math.floor(currentTime / 60);
   let seconds = currentTime % 60;
@@ -24,6 +27,11 @@ function startTimer() {
     } else {
       clearInterval(interval);
       interval = null;
+      if (isWork) {
+        workEndSound?.play();
+      } else {
+        breakEndSound?.play();
+      }
       isWork = !isWork;
       currentTime = isWork ? workDuration : breakDuration;
       updateDisplay();
@@ -48,7 +56,7 @@ startBtn.addEventListener('click', startTimer);
 stopBtn.addEventListener('click', stopTimer);
 resetBtn.addEventListener('click', resetTimer);
 
-// --- Bouton pour modifier la durée ---
+// --- Modifier durée ---
 const modifyBtn = document.createElement("button");
 modifyBtn.textContent = "Modifier durée";
 modifyBtn.style.marginTop = "20px";
@@ -65,13 +73,11 @@ modifyBtn.addEventListener("click", () => {
 durationForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const newMinutes = parseInt(durationInput.value);
-
   if (!isNaN(newMinutes) && newMinutes > 0) {
     workDuration = newMinutes * 60;
     breakDuration = Math.round(workDuration / 5);
     resetTimer();
   }
-
   popup.classList.add("hidden");
 });
 
