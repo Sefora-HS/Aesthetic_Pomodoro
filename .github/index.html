@@ -7,8 +7,9 @@
     <title>Aesthetic Pomodoro Timer</title>
 </head>
 <body>
+    <div class="background-overlay">
     <div class="content">
-        <h1>25 : 00</h1>
+        <h1 id="timer">25:00</h1>
         <div class="buttons">
             <button id="start">Start</button>
             <button id="stop">Stop</button>
@@ -16,6 +17,20 @@
         </div>
     </div>
 
-    
+    <!-- Popup durée -->
+    <div id="duration-popup" class="popup hidden">
+        <div class="popup-content">
+            <label for="duration">Durée (minutes) :</label>
+            <form id="duration-form">
+                <input type="number" id="duration" min="1" max="120" required>
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <audio id="workEndSound" src="sounds/end-work.mp3"></audio>
+    <audio id="breakEndSound" src="sounds/end-break.mp3"></audio>
+    </div>
 </body>
 </html>
