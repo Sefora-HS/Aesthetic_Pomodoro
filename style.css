@@ -11,6 +11,24 @@ body {
     background-size: cover;
 }
 
+/* Mode travail (par défaut) */
+body.work-mode {
+    background-image: url('image/LA-lovers2.jpg');
+    color: #ffe3fb;
+}
+
+/* Mode pause */
+body.break-mode {
+    background-image: url('image/your-break-background.jpg'); /* remplace par ton image */
+    color: #ffffff;
+}
+
+.content h1,
+.buttons button,
+.title {
+    transition: color 0.3s ease;
+}
+
 .content {
     width: 98%;
     position: absolute;

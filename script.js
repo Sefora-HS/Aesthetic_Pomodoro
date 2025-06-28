@@ -20,6 +20,7 @@ function updateDisplay() {
 
 function startTimer() {
   if (interval) return;
+
   interval = setInterval(() => {
     if (currentTime > 0) {
       currentTime--;
@@ -27,18 +28,38 @@ function startTimer() {
     } else {
       clearInterval(interval);
       interval = null;
+
       if (isWork) {
-        workEndSound?.play();
+        workEndSound.play();
+        workEndSound.onended = () => {
+          isWork = false;
+          currentTime = breakDuration;
+
+          // Changement de style pour la pause
+          document.body.classList.remove('work-mode');
+          document.body.classList.add('break-mode');
+
+          updateDisplay();
+          startTimer();
+        };
       } else {
-        breakEndSound?.play();
+        breakEndSound.play();
+        breakEndSound.onended = () => {
+          isWork = true;
+          currentTime = workDuration;
+
+          // Retour au style de travail
+          document.body.classList.remove('break-mode');
+          document.body.classList.add('work-mode');
+
+          updateDisplay();
+          startTimer();
+        };
       }
-      isWork = !isWork;
-      currentTime = isWork ? workDuration : breakDuration;
-      updateDisplay();
-      startTimer();
     }
   }, 1000);
 }
+
 
 function stopTimer() {
   clearInterval(interval);
