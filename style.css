@@ -5,7 +5,7 @@
 
 body {
     transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
-    background-image: url(image/LA-lovers2.jpg);
+    background-image: url(image/background4.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -14,7 +14,7 @@ body {
 
 /* Mode travail (par défaut) */
 body.work-mode {
-    background-image: url('image/LA-lovers2.jpg');
+    background-image: url('image/background4.jpg');
     color: #ffe3fb;
 }
 
