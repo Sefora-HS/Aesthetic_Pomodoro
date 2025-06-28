@@ -16,21 +16,21 @@ const breakEndSound = document.getElementById('breakEndSound');
 const workThemes = [
   {
     background: 'image/background1.jpg',
-    textColor: '#ffe3fb',
-    buttonBg: '#ffe3fb',
-    buttonText: '#52126a'
+    textColor: '#eae8ff',
+    buttonBg: '#3b2f63',
+    buttonText: '#eae8ff'
   },
   {
     background: 'image/background2.jpg',
-    textColor: '#ffffff',
+    textColor: '#dfdfdf',
     buttonBg: '#333333',
-    buttonText: '#ffffff'
+    buttonText: '#dfdfdf'
   },
   {
     background: 'image/background3.jpg',
-    textColor: '#6a004d',
-    buttonBg: '#ffe3ee',
-    buttonText: '#6a004d'
+    textColor: '#f8dc2b',
+    buttonBg: '#0b7d1a',
+    buttonText: '#f8dc2b'
   }
 ];
 
