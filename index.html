@@ -8,43 +8,39 @@
 </head>
 <body>
     <div class="background-overlay">
-    <div class="content">
-        <h1 id="timer">25:00</h1>
-        <div class="buttons">
-            <button id="start">Start</button>
-            <button id="stop">Stop</button>
-            <button id="reset">Reset</button>
+        <div class="content">
+            <h1 id="timer">25:00</h1>
+            <div class="buttons">
+                <button id="start">Start</button>
+                <button id="stop">Stop</button>
+                <button id="reset">Reset</button>
+            </div>
         </div>
+
+        <!-- Timer Pop-up -->
+         <div id="duration-popup" class="popup hidden">
+            <div class="popup-content">
+                <label for="duration">Durée (minutes) :</label>
+                <form id="duration-form">
+                    <input type="number" id="duration" min="1" max="120" required>
+                    <button type="submit">Valider</button>
+                </form>
+            </div>
+         </div>
+
+         <!-- Up left title -->
+          <div class="title">Flowly</div>
+
+          <!-- Down right buttons -->
+           <div class="bottom-buttons">
+            <button class="icon-button"><img src="image/icon1.png" alt="Icône 1"></button>
+            <button class="icon-button"><img src="image/icon2.png" alt="Icône 2"></button>
+           </div>
     </div>
 
-    <!-- Popup durée -->
-    <div id="duration-popup" class="popup hidden">
-        <div class="popup-content">
-            <label for="duration">Durée (minutes) :</label>
-            <form id="duration-form">
-                <input type="number" id="duration" min="1" max="120" required>
-                <button type="submit">Valider</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Titre en haut à gauche -->
-    <div class="title">Flowly</div>
-
-    <!-- Boutons en bas à droite -->
-    <div class="bottom-buttons">
-    <button class="icon-button">
-        <img src="image/icon1.png" alt="Icône 1">
-    </button>
-
-    <button class="icon-button">
-        <img src="image/icon2.png" alt="Icône 2">
-    </button>
-    </div>
-
-    </div>
     <audio id="workEndSound" src="sounds/work-end.mp3" preload="auto"></audio>
     <audio id="breakEndSound" src="sounds/break-end.mp3" preload="auto"></audio>
     <script src="script.js"></script>
+    
 </body>
 </html>
