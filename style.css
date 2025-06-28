@@ -1,164 +1,154 @@
 @font-face {
-    font-family: "Gaming";
-    src: url(font/Retro\ Gaming.ttf);
+  font-family: "Gaming";
+  src: url(font/Retro\ Gaming.ttf);
+}
+
+:root {
+  --bg-color: #000000;         /* Couleur de fond du body (optionnel) */
+  --text-color: #ffe3fb;       /* Texte général */
+  --button-bg: #ffe3fb;        /* Fond des boutons */
+  --button-text: #52126a;      /* Texte des boutons */
 }
 
 body {
-    transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
-    background-image: url(image/background4.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-/* Mode travail (par défaut) */
-body.work-mode {
-    background-image: url('image/background4.jpg');
-    color: #ffe3fb;
-}
-
-/* Mode pause */
-body.break-mode {
-    background-image: url('image/your-break-background.jpg'); /* remplace par ton image */
-    color: #ffffff;
-}
-
-.content h1,
-.buttons button,
-.title {
-    transition: color 0.3s ease;
-}
-
-.content {
-    width: 98%;
-    position: absolute;
-    color: #ffe3fb;
-    top: 42%;
-    transform: translateY(-50%);
-    text-align: center;
-}
-
-h1 {
-    font-family: "Gaming";
-    font-size: 170px;
-    color: #ffe3fb;
-    margin: 30px 0px;
-}
-
-.buttons button {
-    width: 12vw;
-    padding: 10px;
-    margin: 0px 20px;
-    text-align: center;
-    background-color: #ffe3fb;
-    border: none;
-    border-radius: 15px;
-    color: #52126a;
-    font-family: "Gaming";
-    font-size: 15px;
-}
-
-/* Popup styles */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    z-index: 9999;
-}
-
-.popup-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.popup input {
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
-
-.popup button {
-    margin-top: 10px;
-    background-color: #ffe3fb;
-    color: #52126a;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-family: "Gaming";
-}
-
-.hidden {
-    display: none;
-}
-
-.background-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* 30% de noir */
-    z-index: 0;
-}
-
-/* S'assurer que le contenu est au-dessus du filtre */
-.content {
-    position: relative;
-    z-index: 1;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("image/background1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Gaming';
+  margin: 0;
+  padding: 0;
+  transition: background-image 1s ease-in-out, background-color 0.5s, color 0.5s;
 }
 
 
 /* Titre en haut à gauche */
 .title {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-family: 'Dancing Script', cursive; /* ou une autre esthétique manuscrite */
-    font-size: 28px;
-    color: #ffe3fb;
-    z-index: 1000;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px;
+  color: var(--text-color);
+  z-index: 1000;
+  transition: color 0.3s ease;
 }
 
-/* Boutons en bas à droite */
+/* Timer */
+h1 {
+  font-size: 170px;
+  margin: 30px 0;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+/* Contenu central */
+.content {
+  width: 98%;
+  position: absolute;
+  top: 42%;
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 1;
+}
+
+/* Boutons principaux */
+.buttons button {
+  width: 12vw;
+  padding: 10px;
+  margin: 0 20px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 15px;
+  font-size: 15px;
+  font-family: "Gaming";
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Bouton "modifier durée" */
+.modify-button {
+  margin-top: 20px;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--button-text);
+}
+
+.popup input {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.popup button {
+  margin-top: 10px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: "Gaming";
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Boutons en bas à droite (étincelle, etc.) */
 .bottom-buttons {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
 }
 
 .icon-button {
-    background-color: rgba(255, 227, 251, 0.9);
-    border: none;
-    border-radius: 50%;
-    padding: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: rgba(255, 227, 251, 0.9);
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-button img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .icon-button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }

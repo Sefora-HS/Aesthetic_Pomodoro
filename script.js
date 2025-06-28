@@ -12,6 +12,49 @@ let isWork = true;
 const workEndSound = document.getElementById('workEndSound');
 const breakEndSound = document.getElementById('breakEndSound');
 
+// Thèmes
+const workThemes = [
+  {
+    background: 'image/background1.jpg',
+    textColor: '#ffe3fb',
+    buttonBg: '#ffe3fb',
+    buttonText: '#52126a'
+  },
+  {
+    background: 'image/background2.jpg',
+    textColor: '#ffffff',
+    buttonBg: '#333333',
+    buttonText: '#ffffff'
+  },
+  {
+    background: 'image/background3.jpg',
+    textColor: '#6a004d',
+    buttonBg: '#ffe3ee',
+    buttonText: '#6a004d'
+  }
+];
+
+let currentThemeIndex = 0;
+
+function applyWorkTheme(index) {
+  const theme = workThemes[index];
+
+  // ✅ Inclure le filtre noir ici :
+  document.body.style.backgroundImage =
+    `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${theme.background}')`;
+
+  document.documentElement.style.setProperty('--text-color', theme.textColor);
+  document.documentElement.style.setProperty('--button-bg', theme.buttonBg);
+  document.documentElement.style.setProperty('--button-text', theme.buttonText);
+}
+
+const themeButton = document.getElementById('themeButton');
+themeButton.addEventListener('click', () => {
+  if (!isWork) return;
+  currentThemeIndex = (currentThemeIndex + 1) % workThemes.length;
+  applyWorkTheme(currentThemeIndex);
+});
+
 function updateDisplay() {
   let minutes = Math.floor(currentTime / 60);
   let seconds = currentTime % 60;
@@ -34,10 +77,14 @@ function startTimer() {
         workEndSound.onended = () => {
           isWork = false;
           currentTime = breakDuration;
-
-          // Changement de style pour la pause
           document.body.classList.remove('work-mode');
           document.body.classList.add('break-mode');
+
+          // ✅ Pause : image de pause sans filtre
+          document.body.style.backgroundImage = "url('image/your-break-background.jpg')";
+          document.documentElement.style.setProperty('--text-color', '#ffffff');
+          document.documentElement.style.setProperty('--button-bg', '#ffffff');
+          document.documentElement.style.setProperty('--button-text', '#000000');
 
           updateDisplay();
           startTimer();
@@ -47,11 +94,10 @@ function startTimer() {
         breakEndSound.onended = () => {
           isWork = true;
           currentTime = workDuration;
-
-          // Retour au style de travail
           document.body.classList.remove('break-mode');
           document.body.classList.add('work-mode');
 
+          applyWorkTheme(currentThemeIndex); // ✅ avec le filtre intégré
           updateDisplay();
           startTimer();
         };
@@ -59,7 +105,6 @@ function startTimer() {
     }
   }, 1000);
 }
-
 
 function stopTimer() {
   clearInterval(interval);
@@ -70,19 +115,14 @@ function resetTimer() {
   stopTimer();
   isWork = true;
   currentTime = workDuration;
+  document.body.classList.remove('break-mode');
+  document.body.classList.add('work-mode');
+  applyWorkTheme(currentThemeIndex);
   updateDisplay();
 }
 
-startBtn.addEventListener('click', startTimer);
-stopBtn.addEventListener('click', stopTimer);
-resetBtn.addEventListener('click', resetTimer);
-
-// --- Modifier durée ---
-const modifyBtn = document.createElement("button");
-modifyBtn.textContent = "Set Timer";
-modifyBtn.style.marginTop = "20px";
-document.querySelector(".buttons").appendChild(modifyBtn);
-
+// Modifier durée
+const modifyBtn = document.getElementById("modify");
 const popup = document.getElementById("duration-popup");
 const durationForm = document.getElementById("duration-form");
 const durationInput = document.getElementById("duration");
@@ -102,4 +142,10 @@ durationForm.addEventListener("submit", (e) => {
   popup.classList.add("hidden");
 });
 
+// Initialisation
+applyWorkTheme(currentThemeIndex);
 updateDisplay();
+
+startBtn.addEventListener('click', startTimer);
+stopBtn.addEventListener('click', stopTimer);
+resetBtn.addEventListener('click', resetTimer);
