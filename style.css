@@ -4,6 +4,7 @@
 }
 
 body {
+    transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
     background-image: url(image/LA-lovers2.jpg);
     background-repeat: no-repeat;
     background-position: center;
