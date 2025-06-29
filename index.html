@@ -2,41 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
   <title>Aesthetic Pomodoro Timer</title>
 </head>
 <body class="work-mode">
 
+  <!-- Titre en haut à gauche -->
   <div class="title">Flowly</div>
 
+  <!-- Timer -->
   <div class="content">
     <h1 id="timer">25:00</h1>
     <div class="buttons">
       <button id="start">Start</button>
       <button id="stop">Stop</button>
       <button id="reset">Reset</button>
-      <button id="modify">Set Timer</button> <!-- 👈 Bouton déplacé ici -->
+      <button id="modify">Set Timer</button>
     </div>
   </div>
 
+  <!-- Popup durée -->
   <div id="duration-popup" class="popup hidden">
     <div class="popup-content">
-      <label for="duration">Durée (minutes) :</label>
+      <label for="duration">Enter duration (minutes):</label>
       <form id="duration-form">
         <input type="number" id="duration" min="1" max="120" required />
-        <button type="submit">Valider</button>
+        <button type="submit">Validate</button>
       </form>
     </div>
   </div>
 
-  <div class="bottom-buttons">
-    <button id="themeButton" class="icon-button"><img src="image/icon1.png" alt="Changer thème"></button>
-    <button id="open-sidebar" class="icon-button"><img src="image/icon2.png" alt="Icône 2"></button>
+  <!-- Menu Tâches -->
+  <div id="task-sidebar" class="task-sidebar hidden">
+    <div class="task-header">
+      <h2>Study Tasks (^_^)</h2>
+    </div>
+    <div class="task-footer">
+      <input type="text" id="task-input" placeholder="New task..." />
+      <button id="add-task" class="icon-button no-bg-button"><img src="image/verifier.png" alt="Ajouter tâche" /></button>
+    </div>
+    <ul id="task-list" class="task-list"></ul>
+    <button id="close-sidebar" class="icon-button close-arrow">
+      <img src="image/fleche.png" alt="Fermer" />
+    </button>
   </div>
 
+  <!-- Boutons en bas à droite -->
+  <div class="bottom-buttons">
+    <button id="themeButton" class="icon-button">
+      <img src="image/icon1.png" alt="Changer thème" />
+    </button>
+    <button id="open-sidebar" class="icon-button open-notes-button">
+      <img src="image/icon2.png" alt="Tâches" />
+    </button>
+  </div>
+
+  <!-- Sons -->
   <audio id="workEndSound" src="sounds/work-end.mp3" preload="auto"></audio>
   <audio id="breakEndSound" src="sounds/break-end.mp3" preload="auto"></audio>
+
+  <!-- Script principal -->
   <script src="script.js" defer></script>
 </body>
 </html>

@@ -4,10 +4,10 @@
 }
 
 :root {
-  --bg-color: #000000;         /* Couleur de fond du body (optionnel) */
-  --text-color: #ffe3fb;       /* Texte général */
-  --button-bg: #ffe3fb;        /* Fond des boutons */
-  --button-text: #52126a;      /* Texte des boutons */
+  --bg-color: #000000;
+  --text-color: #ffe3fb;
+  --button-bg: #ffe3fb;
+  --button-text: #52126a;
 }
 
 body {
@@ -24,8 +24,7 @@ body {
   transition: background-image 1s ease-in-out, background-color 0.5s, color 0.5s;
 }
 
-
-/* Titre en haut à gauche */
+/* Titre */
 .title {
   position: fixed;
   top: 20px;
@@ -70,11 +69,6 @@ h1 {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Bouton "modifier durée" */
-.modify-button {
-  margin-top: 20px;
-}
-
 /* Popup */
 .popup {
   position: fixed;
@@ -117,7 +111,7 @@ h1 {
   display: none;
 }
 
-/* Boutons en bas à droite (étincelle, etc.) */
+/* Boutons en bas à droite */
 .bottom-buttons {
   position: fixed;
   bottom: 20px;
@@ -129,26 +123,203 @@ h1 {
 }
 
 .icon-button {
-  background-color: var(--text-color);
+  background-color: var(--text-color); /* fond = textColor */
   border: none;
   border-radius: 50%;
-  padding: 12px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease;
-  width: 50px;
-  height: 50px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  color: var(--button-text);
+}
+
+.icon-button img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  filter: none;
+}
+
+/* Position verticale des boutons */
+#open-sidebar {
+  bottom: 20px;
+}
+
+#themeButton {
+  bottom: 80px;
+}
+
+/* Animation au survol */
+.icon-button:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Menu Tâches */
+.task-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) translateX(100%);
+  width: 40%;
+  height: 90vh;
+  background-color: var(--button-bg); /* arrière-plan = buttonBg */
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 9999;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.task-sidebar.show {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Boutons d’image généraux dans le menu des tâches */
+.task-sidebar button {
+  background-color: var(--text-color);   /* ✅ fond dynamique */
+  border: none;
+  border-radius: 10px;                   /* ✅ coins arrondis */
+  padding: 6px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.icon-button img {
-  width: 24px;
-  height: 24px;
+/* Taille d'image à l’intérieur des boutons */
+.task-sidebar button img {
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
-.icon-button:hover {
-  transform: scale(1.1);
+
+.task-header {
+  text-align: center;
+}
+
+.task-header h2 {
+  font-family: "Gaming";
+  color: var(--text-color);
+  margin: 0;
+}
+
+.task-footer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Input pour nouvelle tâche */
+.task-footer input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: "Gaming";
+  background-color: var(--text-color); /* fond input = textColor */
+  color: var(--button-bg);            /* texte input = buttonBg */
+  border: none;
+  outline: none;
+}
+
+.task-footer input::placeholder {
+  color: var(--button-bg); /* ✅ Couleur du texte par défaut */
+  opacity: 0.5; /* Pour forcer la visibilité complète */
+}
+
+
+/* Bouton + sans fond ni bordure */
+.no-bg-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--text-color);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Liste des tâches */
+.task-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--text-color); /* fond tâche = textColor */
+  color: var(--button-bg);             /* texte tâche = buttonBg */
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-family: "Gaming";
+}
+
+/* Bouton supprimer tâche */
+.delete-task-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.delete-task-button img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: none;
+}
+
+/* Bouton fermer sidebar */
+/* Bouton fermer sidebar repositionné en bas à gauche */
+.close-arrow {
+  position: absolute;
+  bottom: 15px;   /* place en bas */
+  left: 15px;     /* à gauche */
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-arrow img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: none;
+}
+
+
+/* Cacher les boutons open-sidebar et close-sidebar selon état */
+.hidden-button {
+  display: none !important;
 }
